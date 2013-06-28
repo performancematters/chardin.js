@@ -31,6 +31,11 @@
   @include transition(opacity 0.1s ease-out);
   max-width: 200px;
 
+	.chardinjs-title {
+		font-size: 1.3em; 
+		font-weight: bold;
+	}
+
   &.chardinjs-left { margin-left: -135px; padding-right: 10px; }
   &.chardinjs-right { margin-right: -135px; padding-left: 10px; }
   &.chardinjs-bottom { margin-bottom: -50px; padding-top: 10px; }

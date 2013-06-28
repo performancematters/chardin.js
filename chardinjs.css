@@ -39,6 +39,9 @@
   -o-transition: opacity 0.1s ease-out;
   transition: opacity 0.1s ease-out;
   max-width: 200px; }
+	.chardinjs-title {
+		font-size: 1.3em; 
+		font-weight: bold; }
   .chardinjs-tooltip.chardinjs-left {
     margin-left: -135px;
     padding-right: 10px; }
