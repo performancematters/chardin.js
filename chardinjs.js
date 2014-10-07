@@ -137,7 +137,12 @@
             target_element_position = this._get_offset(element);
             target_height = target_element_position.height;
             my_height = $(tooltip_layer).height();
-            tooltip_layer.style.top = "" + ((target_height / 2) - (tooltip_layer_position.height / 2) + shift) + "px";
+            // Keep tooltip near top of an element with a large height.
+            var top = (Math.abs(shift) < 100)
+            			? ((target_height / 2) - (tooltip_layer_position.height / 2) + shift)
+            			: ((target_height < 40) ? (target_height/2) : 20);
+            //console.log("[" + element.tagName + "][" + element.getAttribute("name") + "] shift[" + shift + "] height[" + target_height + "] top[" + top + "]");
+            tooltip_layer.style.top = top + "px";
         }
         switch (this._get_position(element)) {
           case "left":
@@ -172,11 +177,11 @@
         helper_layer.className = "chardinjs-helper-layer chardinjs-" + (this._get_position(element));
         this._position_helper_layer(element);
         this.$el.get()[0].appendChild(helper_layer);
-        var maxWidth = ["top", "bottom"].indexOf(this._get_position(element)) ? "100%" : "200px"
+        var maxWidth = (["top", "bottom"].indexOf(this._get_position(element)) > -1) ? "100%" : "130px"
         tooltip_layer.setAttribute('max-width', maxWidth);
         tooltip_layer.className = "chardinjs-tooltip chardinjs-" + (this._get_position(element));
-				contents = (element.getAttribute('data-intro-title')) ? '<div class="chardinjs-tooltiptext chardinjs-title">' + (element.getAttribute('data-intro-title')) + '</div>' : '';
-				contents += "<div class='chardinjs-tooltiptext'>" + (element.getAttribute('data-intro')) + "</div>";
+				contents = (element.getAttribute('data-intro-title')) ? '<div class="chardinjs-tooltiptext chardinjs-title" style="max-width:' + maxWidth + '">' + (element.getAttribute('data-intro-title')) + '</div>' : '';
+				contents += '<div class="chardinjs-tooltiptext" style="max-width:' + maxWidth + '">' + (element.getAttribute('data-intro')) + "</div>";
         tooltip_layer.innerHTML = contents;
         helper_layer.appendChild(tooltip_layer);
         this._place_tooltip(element);
