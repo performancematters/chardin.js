@@ -114,6 +114,11 @@
         return element.getAttribute('data-position') || 'bottom';
       };
 
+      chardinJs.prototype._get_hidden = function(element) {
+    	  var hidden = element.getAttribute('data-intro-hidden') || 'false';
+          return (hidden == 'true') ? true : false;
+       };
+
       chardinJs.prototype._place_tooltip = function(element) {
         var my_height, my_width, target_element_position, target_height, target_width, tooltip_layer, tooltip_layer_position;
         var shift = $(element).data('intro-shift') ? $(element).data('intro-shift') : 0;
@@ -165,6 +170,10 @@
       };
 
       chardinJs.prototype._show_element = function(element) {
+
+    	if (this._get_hidden(element))
+    		return false;
+
         var current_element_position, element_position, helper_layer, tooltip_layer, contents;
 
         element_position = this._get_offset(element);
