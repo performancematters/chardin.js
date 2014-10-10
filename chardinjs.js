@@ -199,11 +199,11 @@
         this.$el.get()[0].appendChild(helper_layer);
         var maxWidth = (["top", "bottom"].indexOf(this._get_param(element,'position')) > -1) ? "100%" : "130px";
         maxWidth = (this._get_param(element,'width')) ? this._get_param(element,'width') : maxWidth
-        tooltip_layer.setAttribute('max-width', maxWidth);
+        tooltip_layer.setAttribute('width', maxWidth);
         var titleParam = this._get_param(element,'title');
         tooltip_layer.className = "chardinjs-tooltip chardinjs-" + (this._get_param(element,'position'));
 		var titleOption = (titleParam) ? '<div class="chardinjs-title">' + (titleParam) + '</div>' : '';
-		contents = '<div class="chardinjs-tooltiptext" style="max-width:' + maxWidth + '">' + titleOption + (this._get_param(element,'text')) + "</div>";
+		contents = '<div class="chardinjs-tooltiptext" style="width:' + maxWidth + '">' + titleOption + (this._get_param(element,'text')) + "</div>";
 
         tooltip_layer.innerHTML = contents;
         helper_layer.appendChild(tooltip_layer);
